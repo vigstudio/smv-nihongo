@@ -1,0 +1,101 @@
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 style="font-family:'Roboto',sans-serif;font-size:2.8rem;font-weight:700;color:#1a2233;letter-spacing:1px;">Chào mừng đến với <span style="color:#E60012;">Lớp học tiếng Nhật SMV</span></h1>
+            <p class="lead" style="font-family:'Inter',sans-serif;color:#444;max-width:600px;margin:16px auto 0;">Học tiếng Nhật hiện đại, tinh tế, trải nghiệm sang trọng cùng giáo trình Minna no Nihongo.</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <!-- Hiragana Card -->
+            <div class="col-12 col-md-6 col-lg-4 d-flex align-items-stretch">
+                <div class="card shadow-sm border-0 fade-in" style="border-radius:20px;">
+                    <div class="card-body text-center py-5">
+                        <div class="mb-3"><i class="ri-translate-2" style="font-size:2.5rem;color:#E60012;"></i></div>
+                        <h3 class="card-title mb-2" style="font-family:'Roboto',sans-serif;font-size:1.5rem;">Học Hiragana</h3>
+                        <p class="text-muted mb-4">Học bảng chữ cái Hiragana cơ bản và nâng cao</p>
+                        <a href="/alphabets/hiragana" class="btn btn-lg btn-outline-dark px-4 py-2" style="border-radius:8px;font-weight:600;border:2px solid #E60012;">Bắt đầu học</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Katakana Card -->
+            <div class="col-12 col-md-6 col-lg-4 d-flex align-items-stretch">
+                <div class="card shadow-sm border-0 fade-in" style="border-radius:20px;">
+                    <div class="card-body text-center py-5">
+                        <div class="mb-3"><i class="ri-translate-2" style="font-size:2.5rem;color:#E60012;"></i></div>
+                        <h3 class="card-title mb-2" style="font-family:'Roboto',sans-serif;font-size:1.5rem;">Học Katakana</h3>
+                        <p class="text-muted mb-4">Học bảng chữ cái Katakana cơ bản và nâng cao</p>
+                        <a href="/alphabets/katakana" class="btn btn-lg btn-outline-dark px-4 py-2" style="border-radius:8px;font-weight:600;border:2px solid #E60012;">Bắt đầu học</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Vocabulary Card -->
+            <div class="col-12 col-md-6 col-lg-4 d-flex align-items-stretch">
+                <div class="card shadow-sm border-0 fade-in" style="border-radius:20px;">
+                    <div class="card-body text-center py-5">
+                        <div class="mb-3"><i class="ri-book-2-line" style="font-size:2.5rem;color:#E60012;"></i></div>
+                        <h3 class="card-title mb-2" style="font-family:'Roboto',sans-serif;font-size:1.5rem;">Từ vựng</h3>
+                        <p class="text-muted mb-4">Học từ vựng theo bài trong giáo trình của sách Minna no Nihongo</p>
+                        <a href="/vocabulary" class="btn btn-lg btn-outline-dark px-4 py-2" style="border-radius:8px;font-weight:600;border:2px solid #E60012;">Xem từ vựng</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+    .fade-in {
+        opacity: 0;
+        transform: translateY(24px);
+        animation: fadeInUp 0.8s cubic-bezier(.4, 0, .2, 1) forwards;
+    }
+
+    .fade-in:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .fade-in:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .fade-in:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    .card {
+        transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .card:hover {
+        box-shadow: 0 8px 32px 0 rgba(34, 34, 34, 0.12);
+        transform: translateY(-4px) scale(1.02);
+    }
+
+    .btn-outline-dark {
+        border: 2px solid #E60012;
+        color: #1a2233;
+        background: #fff;
+        transition: all 0.2s;
+    }
+
+    .btn-outline-dark:hover {
+        background: #E60012;
+        color: #fff;
+        box-shadow: 0 2px 8px 0 rgba(34, 34, 34, 0.08);
+    }
+
+    @media (max-width: 767px) {
+        h1 {
+            font-size: 2rem;
+        }
+
+        .card-body {
+            padding: 2rem 1rem;
+        }
+    }
+</style>

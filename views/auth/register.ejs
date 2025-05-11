@@ -1,0 +1,154 @@
+<div class="d-flex flex-column justify-content-center align-items-center min-vh-100 bg-light">
+    <div class="container-tight py-4">
+        <div class="text-center mb-4">
+            <a href="/" class="navbar-brand navbar-brand-autodark">
+                <img src="/assets/logo-sharp.svg" alt="Logo" height="28">
+            </a>
+        </div>
+    </div>
+    <div class="card shadow-sm" style="max-width: 400px; width: 100%;">
+        <div class="card-body">
+            <h2 class="h4 text-center mb-3">Sign up</h2>
+            <form id="registerForm">
+                <div class="mb-3">
+                    <label class="form-label">Full name</label>
+                    <input type="text" class="form-control" name="fullname" placeholder="Họ và tên" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">MSNV</label>
+                    <input type="text" class="form-control" name="username" placeholder="GKM000000" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Phone</label>
+                    <input type="text" class="form-control" name="phone" placeholder="Số điện thoại" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" placeholder="Mật khẩu" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Confirm password</label>
+                    <input type="password" class="form-control" name="confirm" placeholder="Nhập lại mật khẩu" required>
+                </div>
+                <div class="form-footer">
+                    <button type="submit" class="btn btn-primary w-100">Sign up</button>
+                </div>
+            </form>
+            <div class="text-center text-muted mt-2">
+                Already have account? <a href="/auth/login">Sign in</a>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<script>
+    $(document).ready(function () {
+        // Reset trạng thái lỗi khi người dùng bắt đầu nhập
+        $('input').on('input', function () {
+            $(this).removeClass('is-invalid');
+            $(this).next('.invalid-feedback').hide();
+        });
+
+        $('#registerForm').on('submit', function (e) {
+            e.preventDefault();
+
+            // Reset tất cả trạng thái lỗi
+            $('input').removeClass('is-invalid');
+            $('.invalid-feedback').hide();
+
+            const formData = {
+                fullname: $('input[name="fullname"]').val(),
+                username: $('input[name="username"]').val(),
+                phone: $('input[name="phone"]').val(),
+                password: $('input[name="password"]').val(),
+                confirm: $('input[name="confirm"]').val()
+            };
+
+            // Kiểm tra từng trường
+            let hasError = false;
+            if (!formData.fullname) {
+                $('input[name="fullname"]').addClass('is-invalid')
+                    .after('<div class="invalid-feedback">Vui lòng nhập họ tên</div>');
+                hasError = true;
+            }
+            if (!formData.username) {
+                $('input[name="username"]').addClass('is-invalid')
+                    .after('<div class="invalid-feedback">Vui lòng nhập MSNV</div>');
+                hasError = true;
+            }
+            if (!formData.phone) {
+                $('input[name="phone"]').addClass('is-invalid')
+                    .after('<div class="invalid-feedback">Vui lòng nhập số điện thoại</div>');
+                hasError = true;
+            }
+            if (!formData.password) {
+                $('input[name="password"]').addClass('is-invalid')
+                    .after('<div class="invalid-feedback">Vui lòng nhập mật khẩu</div>');
+                hasError = true;
+            }
+            if (!formData.confirm) {
+                $('input[name="confirm"]').addClass('is-invalid')
+                    .after('<div class="invalid-feedback">Vui lòng xác nhận mật khẩu</div>');
+                hasError = true;
+            }
+            if (formData.password !== formData.confirm) {
+                $('input[name="confirm"]').addClass('is-invalid')
+                    .after('<div class="invalid-feedback">Mật khẩu xác nhận không khớp</div>');
+                hasError = true;
+            }
+
+            if (hasError) return;
+
+            $.ajax({
+                url: '/auth/register',
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    alert('Đăng ký thành công!');
+                    window.location.href = '/auth/login';
+                },
+                error: function (xhr) {
+                    const error = xhr.responseJSON?.error || 'Lỗi đăng ký';
+                    if (xhr.responseJSON?.details) {
+                        // Hiển thị lỗi chi tiết cho từng trường
+                        Object.entries(xhr.responseJSON.details).forEach(([field, message]) => {
+                            if (message) {
+                                $(`input[name="${field}"]`).addClass('is-invalid')
+                                    .after(`<div class="invalid-feedback">${message}</div>`);
+                            }
+                        });
+                    } else {
+                        alert(error);
+                    }
+                }
+            });
+        });
+    });
+</script>
+<style>
+    .navbar-brand img {
+        width: 150px;
+        height: auto;
+    }
+
+    .form-control.is-invalid {
+        border-color: #dc3545;
+        padding-right: calc(1.5em + 0.75rem);
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right calc(0.375em + 0.1875rem) center;
+        background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+    }
+
+    .invalid-feedback {
+        display: none;
+        width: 100%;
+        margin-top: 0.25rem;
+        font-size: 0.875em;
+        color: #dc3545;
+    }
+
+    .form-control.is-invalid~.invalid-feedback {
+        display: block;
+    }
+</style>

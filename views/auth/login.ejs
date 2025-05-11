@@ -1,0 +1,119 @@
+<div class="d-flex flex-column justify-content-center align-items-center min-vh-100 bg-light">
+    <div class="container-tight py-4">
+        <div class="text-center mb-4">
+            <a href="/" class="navbar-brand navbar-brand-autodark">
+                <img src="/assets/logo-sharp.svg" alt="Logo" height="28">
+            </a>
+        </div>
+    </div>
+    <div class="card" style="max-width: 350px; width: 100%;">
+        <div class="card-body">
+            <form id="loginForm">
+                <div class="mb-3">
+                    <label class="form-label">MSNV</label>
+                    <input type="text" class="form-control" name="username" placeholder="Nhập MSNV" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Mật khẩu</label>
+                    <input type="password" class="form-control" name="password" placeholder="Nhập mật khẩu" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
+            </form>
+            <div class="text-center text-muted mt-3">
+                Chưa có tài khoản? <a href="/auth/register">Đăng ký</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FontAwesome cho icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+<style>
+    .navbar-brand img {
+        width: 150px;
+        height: auto;
+    }
+
+    .form-control.is-invalid {
+        border-color: #dc3545;
+        padding-right: calc(1.5em + 0.75rem);
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right calc(0.375em + 0.1875rem) center;
+        background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+    }
+
+    .invalid-feedback {
+        display: none;
+        width: 100%;
+        margin-top: 0.25rem;
+        font-size: 0.875em;
+        color: #dc3545;
+    }
+
+    .form-control.is-invalid~.invalid-feedback {
+        display: block;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        // Reset trạng thái lỗi khi người dùng bắt đầu nhập
+        $('input').on('input', function () {
+            $(this).removeClass('is-invalid');
+            $(this).next('.invalid-feedback').hide();
+        });
+
+        $('#loginForm').on('submit', function (e) {
+            e.preventDefault();
+
+            // Reset tất cả trạng thái lỗi
+            $('input').removeClass('is-invalid');
+            $('.invalid-feedback').hide();
+
+            const formData = {
+                username: $('input[name="username"]').val(),
+                password: $('input[name="password"]').val()
+            };
+
+            // Kiểm tra từng trường
+            let hasError = false;
+            if (!formData.username) {
+                $('input[name="username"]').addClass('is-invalid')
+                    .after('<div class="invalid-feedback">Vui lòng nhập MSNV</div>');
+                hasError = true;
+            }
+            if (!formData.password) {
+                $('input[name="password"]').addClass('is-invalid')
+                    .after('<div class="invalid-feedback">Vui lòng nhập mật khẩu</div>');
+                hasError = true;
+            }
+
+            if (hasError) return;
+
+            $.ajax({
+                url: '/auth/login',
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    window.location.href = '/';
+                },
+                error: function (xhr) {
+                    const error = xhr.responseJSON?.error || 'Lỗi đăng nhập';
+                    if (xhr.responseJSON?.details) {
+                        // Hiển thị lỗi chi tiết cho từng trường
+                        Object.entries(xhr.responseJSON.details).forEach(([field, message]) => {
+                            if (message) {
+                                $(`input[name="${field}"]`).addClass('is-invalid')
+                                    .after(`<div class="invalid-feedback">${message}</div>`);
+                            }
+                        });
+                    } else {
+                        alert(error);
+                    }
+                }
+            });
+        });
+    });
+</script>
