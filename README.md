@@ -92,7 +92,6 @@ Dự án này được phát hành dưới giấy phép MIT. Xem file `LICENSE` 
 ## 📞 Liên Hệ
 
 - GitHub: [@vigstudio](https://github.com/vigstudio)
-- Email: [your-email@example.com]
 
 ## 🙏 Lời Cảm Ơn
 
