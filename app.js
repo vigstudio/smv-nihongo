@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
 const { initDatabase } = require('./database/db');
+const { seoMiddleware } = require('./middleware/seo');
 require('dotenv').config();
 
 const app = express();
@@ -28,6 +29,9 @@ app.set('layout', 'layout');
 app.set('layout extractScripts', true);
 app.set('layout extractStyles', true);
 
+// SEO Middleware
+app.use(seoMiddleware);
+
 // Middleware kiểm tra đăng nhập
 const requireAuth = (req, res, next) => {
     if (!req.session.user) {
@@ -43,8 +47,10 @@ const gameRoutes = require('./routes/games');
 const leaderboardRoutes = require('./routes/leaderboard');
 const vocabularyRouter = require('./routes/vocabulary');
 const gameVocabularyRouter = require('./routes/gameVocabulary');
+const seoRoutes = require('./routes/seo');
 
 // Sử dụng routes
+app.use(seoRoutes); // SEO routes (sitemap.xml, robots.txt) - không cần auth
 app.use('/auth', authRoutes);
 app.use('/alphabets', requireAuth, alphabetRoutes);
 app.use('/games', requireAuth, gameRoutes);

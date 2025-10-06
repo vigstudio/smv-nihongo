@@ -1,12 +1,13 @@
-<section class="py-4">
+<section class="py-4" aria-labelledby="vocabulary-heading">
     <div class="container">
-        <div class="text-center mb-4">
-            <h1 style="font-family:'Roboto',sans-serif;font-size:2.2rem;font-weight:700;color:#1a2233;">Từ vựng theo bài</h1>
+        <header class="text-center mb-4">
+            <h1 id="vocabulary-heading" style="font-family:'Roboto',sans-serif;font-size:2.2rem;font-weight:700;color:#1a2233;">Từ vựng theo bài</h1>
             <p class="lead" style="font-family:'Roboto',sans-serif;color:#444;max-width:600px;margin:16px auto 0;">Chọn bài học để xem danh sách từ vựng tương ứng.</p>
-        </div>
+        </header>
         <div class="row justify-content-center mb-4">
             <div class="col-md-6">
-                <select id="lessonSelect" class="form-select form-select-lg" style="font-family:'Roboto',sans-serif;">
+                <label for="lessonSelect" class="visually-hidden">Chọn bài học</label>
+                <select id="lessonSelect" class="form-select form-select-lg" style="font-family:'Roboto',sans-serif;" aria-label="Chọn bài học từ vựng">
                     <% if (typeof lessons !=='undefined' && lessons && lessons.length> 0) { %>
                         <% lessons.forEach(function(l) { %>
                             <option value="<%= l %>" <%=l===lesson ? 'selected' : '' %>>Bài <%= l %>
@@ -43,15 +44,15 @@
                                         <td class="text-center">
                                             <%= idx+1 %>
                                         </td>
-                                        <td class="text-center" style="font-size:1.2rem;color:#E60012;font-weight:500;">
+                                        <td class="text-center" style="font-size:1.2rem;color:#E60012;font-weight:500;" lang="ja">
                                             <%= item.word %>
                                         </td>
                                         <td class="text-center">
                                             <%= item.romaji %>
                                         </td>
                                         <td class="text-center">
-                                            <button class="btn btn-sm btn-outline-danger play-audio" data-audio="<%= item.audio %>">
-                                                <i class="fas fa-play"></i>
+                                            <button class="btn btn-sm btn-outline-danger play-audio" data-audio="<%= item.audio %>" aria-label="Phát âm từ <%= item.word %>">
+                                                <i class="fas fa-play" aria-hidden="true"></i>
                                             </button>
                                         </td>
                                         <td class="text-center">

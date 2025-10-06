@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
-const { runQuery } = require('./database/db');
+const { runQuery, DB_TYPE } = require('./database/db');
 
 // Cài đặt dependencies
 console.log('--- Cài đặt dependencies ---');
@@ -51,10 +51,12 @@ async function getExecutedMigrations() {
 
 async function logMigration(migrationName) {
     try {
-        await runQuery(
-            'INSERT INTO migrations_log (migration_name) VALUES (?) ON DUPLICATE KEY UPDATE executed_at = CURRENT_TIMESTAMP',
-            [migrationName]
-        );
+        // Dùng syntax khác nhau cho SQLite và MySQL
+        const sql = DB_TYPE === 'sqlite'
+            ? 'INSERT OR REPLACE INTO migrations_log (migration_name, executed_at) VALUES (?, datetime(\'now\'))'
+            : 'INSERT INTO migrations_log (migration_name) VALUES (?) ON DUPLICATE KEY UPDATE executed_at = CURRENT_TIMESTAMP';
+        
+        await runQuery(sql, [migrationName]);
     } catch (err) {
         console.error(`Lỗi khi ghi log migration ${migrationName}:`, err.message);
     }
@@ -63,17 +65,31 @@ async function logMigration(migrationName) {
 async function main() {
     try {
         console.log('--- Tạo bảng database ---');
-        await runSqlFile(path.join(__dirname, 'database', 'schema.sql'));
+        // Dùng schema khác nhau cho SQLite và MySQL
+        const schemaFile = DB_TYPE === 'sqlite' ? 'schema.sqlite.sql' : 'schema.sql';
+        await runSqlFile(path.join(__dirname, 'database', schemaFile));
         
         // Chạy migrate SQL
         console.log('--- Chạy migrations ---');
         const migrationsDir = path.join(__dirname, 'migrations');
+        
+        // Lọc migration files theo DB type
         const migrationFiles = fs.readdirSync(migrationsDir)
-            .filter(file => file.endsWith('.sql'))
+            .filter(file => {
+                if (DB_TYPE === 'sqlite') {
+                    // Ưu tiên .sqlite.sql, fallback to .sql
+                    return file.endsWith('.sqlite.sql') || file.endsWith('.sql');
+                }
+                // MySQL/MariaDB: chỉ dùng .sql không phải .sqlite.sql
+                return file.endsWith('.sql') && !file.endsWith('.sqlite.sql');
+            })
             .sort();
 
-        // Chạy migration tạo bảng migrations_log trước
-        const migrationsLogFile = migrationFiles.find(f => f === '003_create_migrations_log.sql');
+        // Chạy migration tạo bảng migrations_log trước (nếu chưa có trong schema)
+        const migrationsLogFile = DB_TYPE === 'sqlite' 
+            ? migrationFiles.find(f => f === '003_create_migrations_log.sqlite.sql')
+            : migrationFiles.find(f => f === '003_create_migrations_log.sql');
+        
         if (migrationsLogFile) {
             console.log(`Đang chạy migration: ${migrationsLogFile}`);
             await runSqlFile(path.join(migrationsDir, migrationsLogFile));
