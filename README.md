@@ -270,6 +270,150 @@ npm start
 
 ---
 
+### Phương Án 3: Production Server (VPS/Hosting)
+
+Nếu bạn deploy trên VPS hoặc hosting đã có MariaDB/MySQL.
+
+#### 1. Đảm bảo database đã được tạo
+
+Liên hệ admin hoặc sử dụng control panel (cPanel, DirectAdmin, etc.) để:
+
+- Tạo database với tên `nihongo` (hoặc tên khác)
+- Tạo user database với quyền truy cập
+- Ghi nhớ: hostname, username, password, database name
+
+#### 2. Cấu hình file .env
+
+Tạo file `.env` trong thư mục dự án:
+
+```env
+# Database từ hosting
+DB_HOST=localhost                    # Hoặc IP/hostname từ hosting
+DB_PORT=3306
+DB_USER=your_database_user          # User từ hosting
+DB_PASSWORD=your_database_password  # Password từ hosting
+DB_NAME=nihongo                     # Database name từ hosting
+
+# Application
+PORT=9113                           # Hoặc port khác
+NODE_ENV=production
+SESSION_SECRET=your-random-secret-key-here-change-this
+```
+
+#### 3. Deploy ứng dụng
+
+```bash
+# Clone hoặc upload code lên server
+git clone https://github.com/vigstudio/smv-nihongo.git
+cd smv-nihongo
+
+# Cài đặt dependencies (chỉ production)
+npm install --production
+
+# Khởi tạo database (tạo tables)
+node database/init.js
+
+# Chạy ứng dụng
+npm start
+
+# Hoặc dùng PM2 để chạy background
+npm install -g pm2
+pm2 start app.js --name nihongo
+pm2 save
+pm2 startup
+```
+
+#### 4. Chạy ứng dụng với PM2 (khuyến nghị)
+
+```bash
+# Cài đặt PM2
+npm install -g pm2
+
+# Start ứng dụng
+pm2 start app.js --name nihongo --watch
+
+# Các lệnh quản lý
+pm2 status              # Xem trạng thái
+pm2 logs nihongo        # Xem logs
+pm2 restart nihongo     # Restart app
+pm2 stop nihongo        # Dừng app
+pm2 delete nihongo      # Xóa app
+
+# Auto start khi reboot
+pm2 startup
+pm2 save
+```
+
+#### 5. Cấu hình Nginx (nếu dùng)
+
+Tạo file `/etc/nginx/sites-available/nihongo`:
+
+```nginx
+server {
+    listen 80;
+    server_name your-domain.com;
+
+    location / {
+        proxy_pass http://localhost:9113;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    # Static files
+    location /css/ {
+        alias /path/to/smv-nihongo/public/css/;
+    }
+
+    location /js/ {
+        alias /path/to/smv-nihongo/public/js/;
+    }
+
+    location /audio/ {
+        alias /path/to/smv-nihongo/public/audio/;
+    }
+}
+```
+
+```bash
+# Enable site và restart Nginx
+sudo ln -s /etc/nginx/sites-available/nihongo /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl restart nginx
+```
+
+#### ⚠️ Lưu Ý Production
+
+1. **Bảo mật**:
+   - Đổi `SESSION_SECRET` thành chuỗi ngẫu nhiên mạnh
+   - Sử dụng HTTPS (SSL certificate)
+   - Không commit file `.env` vào Git
+2. **Performance**:
+   - Sử dụng `NODE_ENV=production`
+   - Cài đặt chỉ production dependencies: `npm install --production`
+   - Cân nhắc sử dụng CDN cho static files
+3. **Monitoring**:
+
+   - Sử dụng PM2 để auto-restart khi crash
+   - Setup logs rotation
+   - Monitor database connections
+
+4. **Backup**:
+
+   ```bash
+   # Backup database định kỳ
+   mysqldump -u username -p nihongo > backup_$(date +%Y%m%d).sql
+
+   # Hoặc setup cron job
+   0 2 * * * mysqldump -u username -p'password' nihongo | gzip > /backups/nihongo_$(date +\%Y\%m\%d).sql.gz
+   ```
+
+---
+
 ## 📁 Cấu Trúc Dự Án
 
 ```
