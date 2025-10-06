@@ -1,0 +1,75 @@
+version: "3.8"
+
+# File Docker Compose cho môi trường Development
+# Chạy: docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+
+services:
+  mariadb:
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_HOST: "%"
+    volumes:
+      # Mount thêm các seed files cho development
+      - ./database/seed:/docker-entrypoint-initdb.d/seed:ro
+
+  # phpMyAdmin - Web interface quản lý database
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: smv-nihongo-phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mariadb
+      PMA_PORT: 3306
+      PMA_USER: ${DB_USER:-nihongo_user}
+      PMA_PASSWORD: ${DB_PASSWORD:-nihongo123}
+      PMA_ARBITRARY: 1
+      UPLOAD_LIMIT: 100M
+    ports:
+      - "8080:80"
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    networks:
+      - nihongo-network
+
+  # Adminer - Lightweight database management tool (alternative to phpMyAdmin)
+  adminer:
+    image: adminer:latest
+    container_name: smv-nihongo-adminer
+    restart: unless-stopped
+    environment:
+      ADMINER_DEFAULT_SERVER: mariadb
+      ADMINER_DESIGN: pepa-linha
+    ports:
+      - "8081:8080"
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    networks:
+      - nihongo-network
+
+  # Redis - Cache và session store (optional, for future use)
+  # redis:
+  #   image: redis:7-alpine
+  #   container_name: smv-nihongo-redis
+  #   restart: unless-stopped
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - redis_data:/data
+  #   networks:
+  #     - nihongo-network
+  #   healthcheck:
+  #     test: ["CMD", "redis-cli", "ping"]
+  #     interval: 10s
+  #     timeout: 3s
+  #     retries: 3
+
+volumes:
+  redis_data:
+    driver: local
+
+networks:
+  nihongo-network:
+    driver: bridge

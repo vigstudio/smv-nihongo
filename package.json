@@ -3,10 +3,19 @@
     "version": "1.0.0",
     "description": "Ứng dụng học tiếng Nhật",
     "scripts": {
+        "start": "node app.js",
+        "dev": "nodemon app.js",
         "reset": "node database/reset.js",
         "install": "node install.js",
         "migrate": "node install.js",
-        "setup": "npm run reset && npm run migrate"
+        "setup": "npm run reset && npm run migrate",
+        "docker:up": "docker-compose up -d",
+        "docker:down": "docker-compose down",
+        "docker:logs": "docker-compose logs -f mariadb",
+        "docker:restart": "docker-compose restart mariadb",
+        "docker:shell": "docker-compose exec mariadb mysql -u nihongo_user -pnihongo123 nihongo",
+        "db:init": "node database/init.js",
+        "db:backup": "docker-compose exec mariadb mysqldump -u root -prootpassword nihongo > backup.sql"
     },
     "dependencies": {
         "bcrypt": "^5.1.1",
@@ -15,13 +24,13 @@
         "bootstrap": "^5.3.2",
         "chart.js": "^4.4.1",
         "cheerio": "^1.0.0",
-        "dotenv": "^16.5.0",
+        "dotenv": "^16.6.1",
         "ejs": "^3.1.9",
         "express": "^4.21.2",
         "express-ejs-layouts": "^2.5.1",
-        "express-session": "^1.18.1",
+        "express-session": "^1.18.2",
         "jquery": "^3.7.1",
-        "mysql2": "^3.14.1",
+        "mysql2": "^3.15.1",
         "sqlite3": "^5.1.6"
     },
     "devDependencies": {

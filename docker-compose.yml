@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+  mariadb:
+    image: mariadb:11.2
+    container_name: smv-nihongo-mariadb
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-rootpassword}
+      MYSQL_DATABASE: ${DB_NAME:-nihongo}
+      MYSQL_USER: ${DB_USER:-nihongo_user}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-nihongo123}
+      MYSQL_ROOT_HOST: "%"
+    ports:
+      - "${DB_PORT:-3306}:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    networks:
+      - nihongo-network
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+  # Uncomment phần dưới nếu muốn thêm phpMyAdmin để quản lý database
+  # phpmyadmin:
+  #   image: phpmyadmin:latest
+  #   container_name: smv-nihongo-phpmyadmin
+  #   restart: unless-stopped
+  #   environment:
+  #     PMA_HOST: mariadb
+  #     PMA_PORT: 3306
+  #     PMA_USER: ${DB_USER:-nihongo_user}
+  #     PMA_PASSWORD: ${DB_PASSWORD:-nihongo123}
+  #   ports:
+  #     - "8080:80"
+  #   depends_on:
+  #     mariadb:
+  #       condition: service_healthy
+  #   networks:
+  #     - nihongo-network
+
+volumes:
+  mariadb_data:
+    driver: local
+
+networks:
+  nihongo-network:
+    driver: bridge
