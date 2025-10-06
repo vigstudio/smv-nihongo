@@ -82,8 +82,21 @@ async function initDatabase() {
         const statements = schema.split(';').filter(stmt => stmt.trim());
         
         for (const stmt of statements) {
-            if (stmt.trim()) {
-                await runQuery(stmt);
+            const trimmedStmt = stmt.trim();
+            
+            // Bỏ qua các câu lệnh CREATE DATABASE và USE (dành cho production)
+            if (trimmedStmt && 
+                !trimmedStmt.match(/^CREATE\s+DATABASE/i) &&
+                !trimmedStmt.match(/^USE\s+/i)) {
+                try {
+                    await runQuery(trimmedStmt);
+                } catch (err) {
+                    // Bỏ qua lỗi "table already exists"
+                    if (err.code !== 'ER_TABLE_EXISTS_ERROR') {
+                        console.error('Lỗi khi thực thi:', trimmedStmt.substring(0, 100));
+                        throw err;
+                    }
+                }
             }
         }
         
