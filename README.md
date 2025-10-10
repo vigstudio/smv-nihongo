@@ -1,4 +1,4 @@
-# SMV Nihongo - Ứng Dụng Học Tiếng Nhật Thông Minh 🎌
+# 📚 SMV Nihongo - Tài Liệu Hoàn Chỉnh 🎌
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
@@ -12,252 +12,53 @@ SMV Nihongo là một ứng dụng web hiện đại giúp người học tiến
 
 ## 📑 Mục Lục
 
-- [Tính Năng Nổi Bật](#-tính-năng-nổi-bật)
-- [Công Nghệ Sử Dụng](#-công-nghệ-sử-dụng)
-- [Yêu Cầu Hệ Thống](#-yêu-cầu-hệ-thống)
-- [Cài Đặt và Chạy Dự Án](#-cài-đặt-và-chạy-dự-án)
-  - [Phương Án 1: Sử Dụng Docker (Khuyến nghị)](#phương-án-1-sử-dụng-docker-khuyến-nghị)
-  - [Phương Án 2: Cài Đặt Thủ Công](#phương-án-2-cài-đặt-thủ-công)
-- [Cấu Trúc Dự Án](#-cấu-trúc-dự-án)
-- [Cấu Hình](#-cấu-hình)
-- [Scripts Hữu Ích](#-scripts-hữu-ích)
-- [Đóng Góp](#-đóng-góp)
-- [License](#-license)
-- [Liên Hệ](#-liên-hệ)
+- [🚀 Hướng Dẫn Nhanh (5 phút)](#-hướng-dẫn-nhanh-5-phút)
+- [🌟 Tính Năng Nổi Bật](#-tính-năng-nổi-bật)
+- [🛠 Công Nghệ Sử Dụng](#-công-nghệ-sử-dụng)
+- [💻 Yêu Cầu Hệ Thống](#-yêu-cầu-hệ-thống)
+- [🔧 Cài Đặt Chi Tiết](#-cài-đặt-chi-ti[object Object]ocker Guide](#-docker-guide)
+- [⚙️ Cấu Hình Environment](#️-cấu-hình-environment)
+- [📁 Cấu Trúc Dự Án](#-cấu-trúc-dự-án)
+- [🤝 Đóng Góp](#-đóng-góp[object Object]uction Deployment](#-production-deployment)
+- [📊 SEO & Marketing](#-seo--marketing)
+- [🐛 Troubleshooting](#-troubleshooting)
+- [📝 Changelog](#-changelog)
 
 ---
 
-## 🌟 Tính Năng Nổi Bật
+## 🚀 Hướng Dẫn Nhanh (5 phút)
 
-### 📚 Học Tập Tương Tác
+### Bước 1: Cài đặt Docker
+- **Windows/Mac**: Tải [Docker Desktop](https://www.docker.com/products/docker-desktop)
+- **Linux**: `curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh`
 
-- **Học Bảng Chữ Cái**:
-  - Hệ thống học Hiragana và Katakana đầy đủ
-  - Hình ảnh minh họa và video hướng dẫn viết
-  - Phát âm chuẩn cho từng ký tự
-- **Game Học Chữ**:
-
-  - Trò chơi tương tác giúp ghi nhớ bảng chữ cái hiệu quả
-  - Nhiều chế độ chơi khác nhau
-  - Theo dõi tiến độ học tập
-
-- **Học Từ Vựng Theo Bài**:
-
-  - 50 bài học từ giáo trình Minna no Nihongo
-  - Phân loại theo chủ đề và độ khó
-  - Phát âm chuẩn từ người bản xứ
-  - Ví dụ minh họa cho mỗi từ
-
-- **Game Từ Vựng**:
-  - Mini-game thú vị giúp ôn tập từ vựng
-  - Nhiều chế độ: flashcard, matching, quiz
-  - Tùy chọn bài học và số lượng từ
-
-### 🏆 Hệ Thống Động Lực
-
-- **Bảng Xếp Hạng**:
-
-  - Theo dõi tiến độ cá nhân
-  - So sánh với người học khác
-  - Thống kê chi tiết theo từng loại game
-
-- **Hệ Thống Điểm**:
-  - Tích lũy điểm qua các hoạt động học tập
-  - Thưởng cho sự kiên trì và tiến bộ
-
-### 👤 Quản Lý Tài Khoản
-
-- Đăng ký và đăng nhập an toàn
-- Theo dõi lịch sử học tập
-- Tùy chỉnh trải nghiệm học tập
-
----
-
-## 🛠 Công Nghệ Sử Dụng
-
-### Backend
-
-- **Node.js** - Runtime environment
-- **Express.js** - Web framework
-- **MariaDB** - Hệ quản trị cơ sở dữ liệu quan hệ
-- **mysql2** - Driver kết nối MariaDB
-- **bcryptjs** - Mã hóa mật khẩu
-
-### Frontend
-
-- **EJS** - Template engine
-- **Bootstrap 5** - UI framework
-- **Chart.js** - Thư viện biểu đồ
-- **jQuery** - JavaScript library
-
-### DevOps
-
-- **Docker & Docker Compose** - Containerization
-- **dotenv** - Quản lý biến môi trường
-
----
-
-## 💻 Yêu Cầu Hệ Thống
-
-### Phương Án Docker (Khuyến nghị)
-
-- Docker Desktop hoặc Docker Engine (phiên bản mới nhất)
-- Docker Compose V2
-- Node.js 14.x trở lên
-- 2GB RAM trở lên
-- 2GB dung lượng ổ cứng trống
-
-### Phương Án Thủ Công
-
-- Node.js 14.x trở lên
-- MariaDB 11.x hoặc MySQL 8.x
-- npm hoặc yarn
-- Trình duyệt web hiện đại (Chrome, Firefox, Edge, Safari)
-
----
-
-## 🚀 Cài Đặt và Chạy Dự Án
-
-### Phương Án 1: Sử Dụng Docker (Khuyến nghị)
-
-Docker giúp việc cài đặt trở nên đơn giản và nhất quán trên mọi hệ điều hành.
-
-#### 1. Clone repository
-
+### Bước 2: Clone dự án
 ```bash
 git clone https://github.com/vigstudio/smv-nihongo.git
 cd smv-nihongo
 ```
 
-#### 2. Cấu hình biến môi trường
-
+### Bước 3: Tạo file .env
 ```bash
-# Copy file cấu hình mẫu
-cp .env.example .env
-
-# Chỉnh sửa file .env nếu cần (tùy chọn)
-# Các giá trị mặc định đã được cấu hình sẵn
+# Linux/macOS
+cat > .env << 'EOF'
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=nihongo_user
+DB_PASSWORD=nihongo123
+DB_NAME=nihongo
+DB_ROOT_PASSWORD=rootpassword
+PORT=9113
+NODE_ENV=development
+SESSION_SECRET=smv-nihongo-secret-key-change-this-in-production
+EOF
 ```
 
-#### 3. Khởi động MariaDB với Docker Compose
-
+### Bước 4-8: Khởi động
 ```bash
-# Khởi động database
+# Khởi động MariaDB
 docker-compose up -d
 
-# Kiểm tra trạng thái
-docker-compose ps
-```
-
-#### 4. Cài đặt dependencies
-
-```bash
-npm install
-```
-
-#### 5. Khởi tạo database và dữ liệu
-
-```bash
-# Khởi tạo cấu trúc database
-node database/init.js
-
-# Hoặc reset toàn bộ (nếu cần)
-npm run reset
-```
-
-#### 6. Chạy ứng dụng
-
-```bash
-# Chế độ development
-npm start
-
-# Hoặc với nodemon (tự động restart khi có thay đổi)
-npx nodemon app.js
-```
-
-#### 7. Truy cập ứng dụng
-
-Mở trình duyệt và truy cập: **http://localhost:9113**
-
-#### 8. Dừng các dịch vụ
-
-```bash
-# Dừng ứng dụng: Ctrl + C
-
-# Dừng MariaDB
-docker-compose stop
-
-# Dừng và xóa container (giữ lại dữ liệu)
-docker-compose down
-
-# Dừng và xóa tất cả (bao gồm dữ liệu)
-docker-compose down -v
-```
-
----
-
-### Phương Án 2: Cài Đặt Thủ Công
-
-Nếu bạn muốn cài đặt MariaDB trực tiếp trên máy thay vì dùng Docker.
-
-#### 1. Cài đặt MariaDB
-
-**Windows:**
-
-- Tải MariaDB từ [mariadb.org](https://mariadb.org/download/)
-- Chạy file cài đặt và làm theo hướng dẫn
-- Ghi nhớ mật khẩu root
-
-**macOS:**
-
-```bash
-brew install mariadb
-brew services start mariadb
-```
-
-**Linux (Ubuntu/Debian):**
-
-```bash
-sudo apt update
-sudo apt install mariadb-server
-sudo systemctl start mariadb
-sudo mysql_secure_installation
-```
-
-#### 2. Tạo database và user
-
-```bash
-# Đăng nhập MariaDB
-mysql -u root -p
-
-# Trong MySQL shell, chạy các lệnh sau:
-CREATE DATABASE nihongo CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-CREATE USER 'nihongo_user'@'localhost' IDENTIFIED BY 'nihongo123';
-GRANT ALL PRIVILEGES ON nihongo.* TO 'nihongo_user'@'localhost';
-FLUSH PRIVILEGES;
-EXIT;
-```
-
-#### 3. Clone và cấu hình dự án
-
-```bash
-# Clone repository
-git clone https://github.com/vigstudio/smv-nihongo.git
-cd smv-nihongo
-
-# Copy file cấu hình
-cp .env.example .env
-
-# Chỉnh sửa file .env với thông tin database của bạn
-# DB_HOST=localhost
-# DB_USER=nihongo_user
-# DB_PASSWORD=nihongo123
-# DB_NAME=nihongo
-```
-
-#### 4. Cài đặt và chạy
-
-```bash
 # Cài đặt dependencies
 npm install
 
@@ -268,63 +69,365 @@ node database/init.js
 npm start
 ```
 
+### Truy cập: http://localhost:9113
+
 ---
 
-### Phương Án 3: Production Server (VPS/Hosting)
+## 🌟 Tính Năng Nổi Bật
 
-Nếu bạn deploy trên VPS hoặc hosting đã có MariaDB/MySQL.
+### 📚 Học Tập Tương Tác
+- **Học Bảng Chữ Cái**: Hệ thống học Hiragana và Katakana đầy đủ với hình ảnh minh họa và video hướng dẫn viết
+- **Game Học Chữ**: Trò chơi tương tác giúp ghi nhớ bảng chữ cái hiệu quả
+- **Học Từ Vựng Theo Bài**: 50 bài học từ giáo trình Minna no Nihongo với phát âm chuẩn
+- **Game Từ Vựng**: Mini-game thú vị với nhiều chế độ: flashcard, matching, quiz
 
-#### 1. Đảm bảo database đã được tạo
+### 🏆 Hệ Thống Động Lực
+- **Bảng Xếp Hạng**: Theo dõi tiến độ cá nhân và so sánh với người học khác
+- **Hệ Thống Điểm**: Tích lũy điểm qua các hoạt động học tập
 
-Liên hệ admin hoặc sử dụng control panel (cPanel, DirectAdmin, etc.) để:
+### 👤 Quản Lý Tài Khoản
+- Đăng ký và đăng nhập an toàn
+- Theo dõi lịch sử học tập
+- Tùy chỉnh trải nghiệm học tập
 
-- Tạo database với tên `nihongo` (hoặc tên khác)
-- Tạo user database với quyền truy cập
-- Ghi nhớ: hostname, username, password, database name
+---
 
-#### 2. Cấu hình file .env
+## 🛠 Công Nghệ Sử Dụng
 
-Tạo file `.env` trong thư mục dự án:
+### Backend
+- **Node.js** - Runtime environment
+- **Express.js** - Web framework
+- **MariaDB** - Hệ quản trị cơ sở dữ liệu quan hệ
+- **mysql2** - Driver kết nối MariaDB
+- **bcryptjs** - Mã hóa mật khẩu
 
-```env
-# Database từ hosting
-DB_HOST=localhost                    # Hoặc IP/hostname từ hosting
-DB_PORT=3306
-DB_USER=your_database_user          # User từ hosting
-DB_PASSWORD=your_database_password  # Password từ hosting
-DB_NAME=nihongo                     # Database name từ hosting
+### Frontend
+- **EJS** - Template engine
+- **Bootstrap 5** - UI framework
+- **Chart.js** - Thư viện biểu đồ
+- **jQuery** - JavaScript library
 
-# Application
-PORT=9113                           # Hoặc port khác
-NODE_ENV=production
-SESSION_SECRET=your-random-secret-key-here-change-this
-```
+### DevOps
+- **Docker & Docker Compose** - Containerization
+- **dotenv** - Quản lý biến môi trường
 
-#### 3. Deploy ứng dụng
+---
 
+## 💻 Yêu Cầu Hệ Thống
+
+### Phương Án Docker (Khuyến nghị)
+- Docker Desktop hoặc Docker Engine (phiên bản mới nhất)
+- Docker Compose V2
+- Node.js 14.x trở lên
+- 2GB RAM trở lên
+- 2GB dung lượng ổ cứng trống
+
+### Phương Án Thủ Công
+- Node.js 14.x trở lên
+- MariaDB 11.x hoặc MySQL 8.x
+- npm hoặc yarn
+- Trình duyệt web hiện đại (Chrome, Firefox, Edge, Safari)
+
+---
+
+## 🔧 Cài Đặt Chi Tiết
+
+### Phương Án 1: Sử Dụng Docker (Khuyến nghị)
+
+#### 1. Clone repository
 ```bash
-# Clone hoặc upload code lên server
 git clone https://github.com/vigstudio/smv-nihongo.git
 cd smv-nihongo
-
-# Cài đặt dependencies (chỉ production)
-npm install --production
-
-# Khởi tạo database (tạo tables)
-node database/init.js
-
-# Chạy ứng dụng
-npm start
-
-# Hoặc dùng PM2 để chạy background
-npm install -g pm2
-pm2 start app.js --name nihongo
-pm2 save
-pm2 startup
 ```
 
-#### 4. Chạy ứng dụng với PM2 (khuyến nghị)
+#### 2. Cấu hình biến môi trường
+```bash
+# Copy file cấu hình mẫu
+cp .env.example .env
+# Chỉnh sửa file .env nếu cần (tùy chọn)
+```
 
+#### 3. Khởi động MariaDB với Docker Compose
+```bash
+# Khởi động database
+docker-compose up -d
+# Kiểm tra trạng thái
+docker-compose ps
+```
+
+#### 4. Cài đặt dependencies và khởi tạo
+```bash
+npm install
+node database/init.js
+npm start
+```
+
+#### 5. Truy cập ứng dụng
+Mở trình duyệt và truy cập: **http://localhost:9113**
+
+### Phương Án 2: Cài Đặt Thủ Công
+
+#### 1. Cài đặt MariaDB
+**Windows**: Tải MariaDB từ [mariadb.org](https://mariadb.org/download/)
+**macOS**: `brew install mariadb && brew services start mariadb`
+**Linux**: `sudo apt update && sudo apt install mariadb-server`
+
+#### 2. Tạo database và user
+```sql
+CREATE DATABASE nihongo CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'nihongo_user'@'localhost' IDENTIFIED BY 'nihongo123';
+GRANT ALL PRIVILEGES ON nihongo.* TO 'nihongo_user'@'localhost';
+FLUSH PRIVILEGES;
+```
+
+#### 3. Clone và cấu hình dự án
+```bash
+git clone https://github.com/vigstudio/smv-nihongo.git
+cd smv-nihongo
+cp .env.example .env
+# Chỉnh sửa file .env với thông tin database
+npm install
+node database/init.js
+npm start
+```
+
+---
+
+## 🐳 Docker Guide
+
+### Lợi Ích Docker
+✅ **Dễ dàng setup**: Không cần cài MariaDB trực tiếp  
+✅ **Nhất quán**: Môi trường giống nhau trên mọi máy  
+✅ **Cách ly**: Database chạy trong container riêng  
+✅ **Dễ xóa**: Xóa container không ảnh hưởng hệ thống
+
+### Docker Compose Files
+
+#### `docker-compose.yml` (Production)
+- MariaDB 11.2 với utf8mb4 encoding
+- Health checks tự động
+- Persistent volumes để lưu trữ dữ liệu
+
+#### `docker-compose.dev.yml` (Development)
+- phpMyAdmin (http://localhost:8080) - Web UI quản lý database
+- Adminer (http://localhost:8081) - Alternative DB manager
+
+### Các Lệnh Docker Thường Dùng
+```bash
+# Xem logs MariaDB
+docker-compose logs -f mariadb
+
+# Restart MariaDB
+docker-compose restart mariadb
+
+# Truy cập MariaDB shell
+docker-compose exec mariadb mysql -u nihongo_user -p
+
+# Backup database
+docker-compose exec mariadb mysqldump -u root -p nihongo > backup.sql
+
+# Dừng và xóa container
+docker-compose down
+```
+
+---
+
+## ⚙️ Cấu Hình Environment
+
+### File .env Configuration
+
+Website hỗ trợ 3 loại database: **MariaDB**, **MySQL**, hoặc **SQLite**.
+
+#### Option 1: MariaDB (Khuyến nghị cho Production)
+```env
+# Database Configuration
+DB_TYPE=mariadb
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=nihongo_user
+DB_PASSWORD=nihongo123
+DB_NAME=nihongo
+DB_ROOT_PASSWORD=rootpassword
+
+# Application Configuration
+PORT=9113
+NODE_ENV=development
+
+# SEO Configuration
+SITE_URL=http://localhost:9113
+FB_APP_ID=
+TWITTER_HANDLE=@smv_nihongo
+
+# Session Secret
+SESSION_SECRET=smv-nihongo-secret-key-change-this-in-production
+```
+
+#### Option 2: SQLite (Khuyến nghị cho Development)
+```env
+DB_TYPE=sqlite
+DB_PATH=./database/nihongo.sqlite
+PORT=9113
+NODE_ENV=development
+SESSION_SECRET=smv-nihongo-secret-key-change-this-in-production
+```
+
+### Biến Môi Trường Chi Tiết
+
+| Biến | Mô Tả | Giá Trị Mặc Định |
+|------|-------|------------------|
+| DB_TYPE | Loại database (mariadb/mysql/sqlite) | mariadb |
+| DB_HOST | Host database | localhost |
+| DB_PORT | Port database | 3306 |
+| DB_USER | Username database | nihongo_user |
+| DB_PASSWORD | Password database | nihongo123 |
+| DB_NAME | Tên database | nihongo |
+| PORT | Port ứng dụng | 9113 |
+| NODE_ENV | Môi trường (development/production) | development |
+| SESSION_SECRET | Secret key cho session | (cần thay đổi) |
+
+---
+
+## 📁 Cấu Trúc Dự Án
+
+```
+smv-nihongo/
+├── app.js                    # Entry point của ứng dụng
+├── package.json              # Dependencies và scripts
+├── docker-compose.yml        # Cấu hình Docker Compose
+├── .env.example              # File cấu hình mẫu
+├── Makefile                  # Commands tiện ích
+│
+├── controllers/              # Business logic
+│   ├── gameVocabularyController.js
+│   └── vocabularyController.js
+│
+├── database/                 # Database và migrations
+│   ├── db.js                # Connection pool và helpers
+│   ├── init.js              # Script khởi tạo database
+│   ├── schema.sql           # Cấu trúc database
+│   ├── migrations/          # Database migrations
+│   └── seed/                # Dữ liệu mẫu (50 bài học)
+│
+├── middleware/               # Express middleware
+│   ├── auth.js              # Authentication middleware
+│   └── seo.js               # SEO middleware
+│
+├── routes/                   # Route handlers
+│   ├── alphabets.js         # Routes cho học chữ cái
+│   ├── auth.js              # Routes xác thực
+│   ├── games.js             # Routes cho games
+│   ├── vocabulary.js        # Routes từ vựng
+│   └── seo.js               # SEO routes
+│
+├── views/                    # EJS templates
+│   ├── layout.ejs           # Layout chính
+│   ├── index.ejs            # Trang chủ
+│   ├── alphabets/           # Views học chữ cái
+│   ├── auth/                # Views đăng nhập/đăng ký
+│   └── games/               # Views các game
+│
+├── public/                   # Static files
+│   ├── css/                 # Stylesheets
+│   ├── js/                  # Client-side scripts
+│   ├── audio/               # File âm thanh (50 bài Minna)
+│   └── assets/              # Images và videos
+│
+└── scripts/                  # Utility scripts
+    ├── convert_to_sql.js    # Chuyển đổi dữ liệu sang SQL
+    ├── crawl_lessons.js     # Crawl dữ liệu bài học
+    └── download_audio.js    # Download file audio
+```
+
+---
+
+## 🤝 Đóng Góp
+
+Chúng tôi rất hoan nghênh mọi đóng góp! Dự án này là mã nguồn mở và cộng đồng.
+
+### Code of Conduct
+- Tôn trọng mọi người tham gia
+- Chấp nhận phê bình xây dựng
+- Tập trung vào điều tốt nhất cho cộng đồng
+- Thể hiện sự đồng cảm với các thành viên khác
+
+### Quy Trình Đóng Góp
+
+#### 1. Fork và Clone Repository
+```bash
+# Fork repository trên GitHub, sau đó clone về máy
+git clone https://github.com/YOUR_USERNAME/smv-nihongo.git
+cd smv-nihongo
+
+# Thêm upstream remote
+git remote add upstream https://github.com/vigstudio/smv-nihongo.git
+```
+
+#### 2. Setup Development Environment
+```bash
+# Sử dụng Makefile (khuyến nghị)
+make dev-setup
+
+# Hoặc thủ công
+docker-compose up -d
+npm install
+node database/init.js
+```
+
+#### 3. Tạo Branch Mới
+```bash
+git checkout -b feature/TinhNangMoi
+```
+
+#### 4. Coding Standards
+- **JavaScript**: Sử dụng ES6+ syntax
+- **Indentation**: 2 spaces
+- **Naming**: camelCase cho variables, PascalCase cho classes
+- **Comments**: Tiếng Việt hoặc tiếng Anh
+- **File structure**: Tuân theo cấu trúc hiện tại
+
+#### 5. Commit Messages
+```bash
+# Format: [type]: description
+git commit -m "feat: thêm tính năng game kanji"
+git commit -m "fix: sửa lỗi kết nối database"
+git commit -m "docs: cập nhật README"
+```
+
+**Types**: feat, fix, docs, style, refactor, test, chore
+
+#### 6. Pull Request Process
+1. Push branch lên fork của bạn
+2. Tạo Pull Request từ GitHub
+3. Điền template PR đầy đủ
+4. Chờ review và feedback
+5. Update theo yêu cầu reviewer
+
+### Báo Cáo Bug
+Tạo **Issue** với thông tin:
+- Mô tả lỗi chi tiết
+- Các bước để reproduce
+- Screenshots (nếu có)
+- Môi trường (OS, Node.js version, Browser)
+
+### Đề Xuất Tính Năng
+- Mô tả tính năng rõ ràng
+- Lý do cần thiết
+- Mockup/wireframe (nếu có)
+- Technical approach (nếu biết)
+
+---
+
+## [object Object]ion Deployment
+
+### Yêu Cầu Production
+- **Server**: VPS hoặc Hosting có quyền SSH
+- **OS**: Linux (Ubuntu 20.04+, CentOS 7+, Debian 10+)
+- **Node.js**: Version 14.x trở lên
+- **MariaDB/MySQL**: Version 10.x+ / 8.x+
+- **RAM**: Tối thiểu 1GB
+- **Disk**: Tối thiểu 5GB
+
+### Deploy với PM2 (Khuyến nghị)
 ```bash
 # Cài đặt PM2
 npm install -g pm2
@@ -337,17 +440,13 @@ pm2 status              # Xem trạng thái
 pm2 logs nihongo        # Xem logs
 pm2 restart nihongo     # Restart app
 pm2 stop nihongo        # Dừng app
-pm2 delete nihongo      # Xóa app
 
 # Auto start khi reboot
 pm2 startup
 pm2 save
 ```
 
-#### 5. Cấu hình Nginx (nếu dùng)
-
-Tạo file `/etc/nginx/sites-available/nihongo`:
-
+### Cấu Hình Nginx
 ```nginx
 server {
     listen 80;
@@ -368,230 +467,85 @@ server {
     location /css/ {
         alias /path/to/smv-nihongo/public/css/;
     }
-
     location /js/ {
         alias /path/to/smv-nihongo/public/js/;
     }
-
     location /audio/ {
         alias /path/to/smv-nihongo/public/audio/;
     }
 }
 ```
 
-```bash
-# Enable site và restart Nginx
-sudo ln -s /etc/nginx/sites-available/nihongo /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl restart nginx
-```
-
-#### ⚠️ Lưu Ý Production
-
+### ⚠️ Lưu Ý Production
 1. **Bảo mật**:
    - Đổi `SESSION_SECRET` thành chuỗi ngẫu nhiên mạnh
    - Sử dụng HTTPS (SSL certificate)
    - Không commit file `.env` vào Git
+
 2. **Performance**:
    - Sử dụng `NODE_ENV=production`
    - Cài đặt chỉ production dependencies: `npm install --production`
    - Cân nhắc sử dụng CDN cho static files
-3. **Monitoring**:
 
+3. **Monitoring**:
    - Sử dụng PM2 để auto-restart khi crash
    - Setup logs rotation
    - Monitor database connections
 
 4. **Backup**:
-
    ```bash
    # Backup database định kỳ
    mysqldump -u username -p nihongo > backup_$(date +%Y%m%d).sql
 
-   # Hoặc setup cron job
+   # Setup cron job
    0 2 * * * mysqldump -u username -p'password' nihongo | gzip > /backups/nihongo_$(date +\%Y\%m\%d).sql.gz
    ```
 
 ---
 
-## 📁 Cấu Trúc Dự Án
+## 📊 SEO & Marketing
 
-```
-smv-nihongo/
-├── app.js                    # Entry point của ứng dụng
-├── package.json              # Dependencies và scripts
-├── docker-compose.yml        # Cấu hình Docker Compose
-├── .env.example              # File cấu hình mẫu
-├── .dockerignore            # Ignore files cho Docker
-│
-├── controllers/              # Business logic
-│   ├── gameVocabularyController.js
-│   └── vocabularyController.js
-│
-├── database/                 # Database và migrations
-│   ├── db.js                # Connection pool và helpers
-│   ├── init.js              # Script khởi tạo database
-│   ├── reset.js             # Script reset database
-│   ├── schema.sql           # Cấu trúc database
-│   ├── migrations/          # Database migrations
-│   │   ├── 001_create_vocabulary_lesson.sql
-│   │   ├── 002_add_user_profile_fields.sql
-│   │   └── 003_create_migrations_log.sql
-│   └── seed/                # Dữ liệu mẫu
-│       └── lessons/         # Từ vựng 50 bài học
-│           ├── lesson1.sql
-│           ├── lesson2.sql
-│           └── ...
-│
-├── middleware/               # Express middleware
-│   └── auth.js              # Authentication middleware
-│
-├── routes/                   # Route handlers
-│   ├── admin.js
-│   ├── alphabets.js         # Routes cho học chữ cái
-│   ├── auth.js              # Routes xác thực
-│   ├── games.js             # Routes cho games
-│   ├── gameVocabulary.js    # Routes game từ vựng
-│   ├── leaderboard.js       # Routes bảng xếp hạng
-│   └── vocabulary.js        # Routes từ vựng
-│
-├── views/                    # EJS templates
-│   ├── layout.ejs           # Layout chính
-│   ├── index.ejs            # Trang chủ
-│   ├── alphabets/           # Views học chữ cái
-│   ├── auth/                # Views đăng nhập/đăng ký
-│   ├── games/               # Views các game
-│   └── ...
-│
-├── public/                   # Static files
-│   ├── css/                 # Stylesheets
-│   │   └── style.css
-│   ├── js/                  # Client-side scripts
-│   │   └── main.js
-│   ├── audio/               # File âm thanh
-│   │   └── minna/           # Audio 50 bài Minna
-│   │       ├── bai01/
-│   │       ├── bai02/
-│   │       └── ...
-│   └── assets/              # Images và videos
-│       ├── images/          # Hình ảnh chữ cái
-│       │   ├── hiragana/
-│       │   └── katakana/
-│       └── videos/          # Video viết chữ
-│           ├── hiragana/
-│           └── katakana/
-│
-└── scripts/                  # Utility scripts
-    ├── convert_to_sql.js    # Chuyển đổi dữ liệu sang SQL
-    ├── crawl_lessons.js     # Crawl dữ liệu bài học
-    └── download_audio.js    # Download file audio
-```
+### Tính Năng SEO Đã Triển Khai
+- ✅ **40+ Meta Tags** (Title, Description, Keywords, Open Graph, Twitter Card)
+- ✅ **Structured Data** (5 loại Schema.org JSON-LD)
+- ✅ **Sitemap.xml** động (61 URLs)
+- ✅ **Robots.txt** tối ưu
+- ✅ **Semantic HTML5** + ARIA Accessibility
+- ✅ **Mobile Responsive** + Fast Loading
 
----
-
-## ⚙️ Cấu Hình
-
-### File .env
-
-Tạo file `.env` từ `.env.example` và tùy chỉnh theo nhu cầu:
-
+### SEO Configuration
 ```env
-# Database Configuration
-DB_HOST=localhost              # Host của database
-DB_PORT=3306                  # Port của MariaDB (mặc định 3306)
-DB_USER=nihongo_user          # Username database
-DB_PASSWORD=nihongo123        # Password database
-DB_NAME=nihongo               # Tên database
-DB_ROOT_PASSWORD=rootpassword # Password root (chỉ dùng cho Docker)
-
-# Application Configuration
-PORT=9113                     # Port chạy ứng dụng
-NODE_ENV=development          # Môi trường: development/production
-
-# Session Secret (Đổi trong production!)
-SESSION_SECRET=smv-nihongo-secret-key-change-this-in-production
+# SEO Configuration trong .env
+SITE_URL=https://your-domain.com
+SITE_NAME=SMV Nihongo
+SITE_DESCRIPTION=Học tiếng Nhật online miễn phí với Minna no Nihongo
+FB_APP_ID=your_facebook_app_id
+TWITTER_HANDLE=@smv_nihongo
 ```
 
-### Docker Compose Services
+### Schema.org Structured Data
+Website tự động tạo 5 loại structured data:
+1. **WebSite** - Thông tin website chính
+2. **Organization** - Thông tin tổ chức
+3. **Course** - Thông tin khóa học
+4. **EducationalOrganization** - Tổ chức giáo dục
+5. **BreadcrumbList** - Navigation breadcrumbs
 
-File `docker-compose.yml` bao gồm:
-
-- **mariadb**: Database server với MariaDB 11.2
-  - Port: 3306
-  - Volume: `mariadb_data` (persistent storage)
-  - Character set: utf8mb4 (hỗ trợ đầy đủ Unicode, bao gồm Emoji và chữ Nhật)
-- **phpmyadmin** (tùy chọn): Web interface quản lý database
-  - Bỏ comment trong `docker-compose.yml` để sử dụng
-  - Truy cập tại: http://localhost:8080
-
----
-
-## 📜 Scripts Hữu Ích
-
-### NPM Scripts
-
-```bash
-# Reset database (xóa và tạo lại)
-npm run reset
-
-# Chạy migrations
-npm run migrate
-
-# Setup hoàn chỉnh (reset + migrate)
-npm run setup
-
-# Install (chạy post-install script)
-npm run install
-```
-
-### Docker Commands
-
-```bash
-# Xem logs của MariaDB
-docker-compose logs -f mariadb
-
-# Restart MariaDB
-docker-compose restart mariadb
-
-# Truy cập MariaDB shell
-docker-compose exec mariadb mysql -u nihongo_user -p nihongo
-
-# Backup database
-docker-compose exec mariadb mysqldump -u root -p nihongo > backup.sql
-
-# Restore database
-docker-compose exec -T mariadb mysql -u root -p nihongo < backup.sql
-
-# Xem thông tin container
-docker-compose ps
-docker-compose top
-```
-
-### Database Scripts
-
-```bash
-# Khởi tạo database
-node database/init.js
-
-# Reset database
-node database/reset.js
-
-# Crawl dữ liệu từ nguồn
-node scripts/crawl_lessons.js
-
-# Chuyển đổi dữ liệu sang SQL
-node scripts/convert_to_sql.js
-
-# Download audio files
-node scripts/download_audio.js
-```
+### SEO Checklist
+- [ ] Cấu hình domain và HTTPS
+- [ ] Setup Google Analytics
+- [ ] Setup Google Search Console
+- [ ] Submit sitemap.xml
+- [ ] Verify structured data
+- [ ] Test mobile responsiveness
+- [ ] Check page speed
+- [ ] Setup social media accounts
 
 ---
 
 ## 🐛 Troubleshooting
 
-### Lỗi kết nối database
-
+### Lỗi Kết Nối Database
 ```bash
 # Kiểm tra MariaDB đang chạy
 docker-compose ps
@@ -603,75 +557,131 @@ docker-compose logs mariadb
 docker-compose restart mariadb
 ```
 
-### Port đã được sử dụng
+### Port Đã Được Sử Dụng
+```bash
+# Kiểm tra port 3306
+# Windows: netstat -ano | findstr :3306
+# Linux/macOS: lsof -i :3306
 
-Nếu port 3306 hoặc 9113 đã được sử dụng, thay đổi trong file `.env`:
-
-```env
-DB_PORT=3307    # Đổi port MariaDB
-PORT=9114       # Đổi port ứng dụng
+# Đổi port trong .env
+DB_PORT=3307
+PORT=9114
 ```
 
-### Lỗi permission denied
-
+### Lỗi Permission Denied
 ```bash
 # Linux/macOS: Thêm quyền thực thi
 chmod +x database/init.js
 chmod +x database/reset.js
 ```
 
+### Lỗi npm install
+```bash
+# Xóa node_modules và install lại
+rm -rf node_modules package-lock.json
+npm install
+
+# Windows
+rmdir /s /q node_modules
+del package-lock.json
+npm install
+```
+
+### Lỗi Docker
+```bash
+# Restart Docker service
+# Windows/Mac: Restart Docker Desktop
+# Linux: sudo systemctl restart docker
+
+# Clear Docker cache
+docker system prune -a
+```
+
 ---
 
-## 🤝 Đóng Góp
+## 📜 Scripts Hữu Ích
 
-Chúng tôi rất hoan nghênh mọi đóng góp! Dự án này là mã nguồn mở và cộng đồng.
+### NPM Scripts
+```bash
+# Reset database (xóa và tạo lại)
+npm run reset
 
-### Cách đóng góp
+# Chạy migrations
+npm run migrate
 
-1. **Fork** dự án này
-2. Tạo **branch** mới cho tính năng của bạn:
-   ```bash
-   git checkout -b feature/TinhNangMoi
-   ```
-3. **Commit** các thay đổi:
-   ```bash
-   git commit -m 'Thêm tính năng XYZ'
-   ```
-4. **Push** lên branch:
-   ```bash
-   git push origin feature/TinhNangMoi
-   ```
-5. Tạo **Pull Request**
+# Setup hoàn chỉnh (reset + migrate)
+npm run setup
 
-### Quy tắc đóng góp
+# Docker commands
+npm run docker:up      # Khởi động Docker
+npm run docker:down    # Dừng Docker
+npm run db:backup      # Backup database
+```
 
-- Code phải tuân theo style hiện tại
-- Commit message rõ ràng bằng tiếng Việt hoặc tiếng Anh
-- Test kỹ trước khi tạo PR
-- Cập nhật documentation nếu cần
+### Makefile Commands
+```bash
+make help           # Xem tất cả lệnh
+make dev-setup      # Setup development (all-in-one)
+make start          # Chạy ứng dụng
+make dev            # Chạy với auto-reload
+make docker-up-dev  # Khởi động Docker + tools
+make logs           # Xem logs
+make shell          # Truy cập database
+make backup         # Backup database
+```
 
-### Báo lỗi
+---
 
-Nếu bạn phát hiện lỗi, vui lòng tạo **Issue** với thông tin:
+## 📝 Changelog
 
-- Mô tả lỗi chi tiết
-- Các bước để reproduce
-- Screenshots (nếu có)
-- Môi trường (OS, Node.js version, Browser)
+### [Unreleased]
+
+#### Added
+- Docker Compose support với MariaDB 11.2
+- File `docker-compose.yml` cho production
+- File `docker-compose.dev.yml` cho development environment
+- phpMyAdmin và Adminer trong dev mode
+- File `.dockerignore` để tối ưu Docker build
+- NPM scripts mới: `docker:*` và `db:*`
+- Hướng dẫn chi tiết về Docker trong README
+- SEO optimization với 40+ meta tags
+- Structured data với Schema.org JSON-LD
+- Sitemap.xml động và robots.txt
+
+#### Changed
+- Chuyển từ SQLite sang MariaDB làm database chính
+- Cập nhật hoàn toàn README.md với cấu trúc mới
+- Cập nhật `.gitignore` để bao gồm các file Docker và backup
+- Cải thiện package.json với nhiều scripts hơn
+
+#### Fixed
+- Character encoding issues với utf8mb4
+- Connection pooling trong db.js
+
+### [1.0.0] - 2024-XX-XX
+
+#### Added
+- Hệ thống học Hiragana và Katakana
+- Game học chữ cái tương tác
+- 50 bài học từ vựng từ Minna no Nihongo
+- Game từ vựng với nhiều chế độ
+- Hệ thống đăng ký/đăng nhập
+- Bảng xếp hạng và thống kê
+- Phát âm chuẩn cho từng từ vựng
+- Video hướng dẫn viết chữ
+- Responsive design với Bootstrap 5
 
 ---
 
 ## 📊 Roadmap
 
 ### Version 1.1 (Đang phát triển)
-
 - [ ] Thêm bài tập ngữ pháp
 - [ ] Hệ thống flashcard thông minh với spaced repetition
 - [ ] App mobile (React Native)
 - [ ] Chế độ offline
 
 ### Version 1.2 (Kế hoạch)
-
 - [ ] Tích hợp AI chat bot luyện hội thoại
 - [ ] Nhận diện chữ viết tay
 - [ ] Bài tập kanji
@@ -679,27 +689,17 @@ Nếu bạn phát hiện lỗi, vui lòng tạo **Issue** với thông tin:
 
 ---
 
-## 📝 License
-
-Dự án này được phát hành dưới giấy phép **MIT License**.
-
-Xem file [LICENSE](LICENSE) để biết thêm chi tiết.
-
-```
-MIT License - Bạn có quyền:
-✓ Sử dụng thương mại
-✓ Chỉnh sửa
-✓ Phân phối
-✓ Sử dụng riêng tư
-```
-
----
-
-## 📞 Liên Hệ
+## [object Object]iên Hệ & Hỗ Trợ
 
 - **GitHub**: [@vigstudio](https://github.com/vigstudio)
 - **Website**: [smv-nihongo](https://github.com/vigstudio/smv-nihongo)
 - **Issues**: [GitHub Issues](https://github.com/vigstudio/smv-nihongo/issues)
+
+### Cần Giúp Đỡ?
+1. **Tìm trong docs** - Ctrl+F trong file này
+2. **Search GitHub Issues** - Có thể đã có người hỏi
+3. **Tạo Issue mới** - Với label `question`
+4. **Email maintainers** - Cho vấn đề riêng tư
 
 ---
 
@@ -713,9 +713,7 @@ Dự án này không thể hoàn thành nếu thiếu sự đóng góp và hỗ 
 - **Open Source Community** - Các thư viện và công cụ tuyệt vời
 
 ### Công nghệ được sử dụng
-
 Xin cảm ơn các dự án open source:
-
 - [Node.js](https://nodejs.org/)
 - [Express.js](https://expressjs.com/)
 - [MariaDB](https://mariadb.org/)
@@ -724,7 +722,7 @@ Xin cảm ơn các dự án open source:
 
 ---
 
-## 🌟 Ủng Hộ Dự Án
+##[object Object]ự Án
 
 Nếu bạn thấy dự án này hữu ích, hãy:
 
@@ -740,12 +738,26 @@ Nếu bạn thấy dự án này hữu ích, hãy:
 
 ---
 
+## 📝 License
+
+Dự án này được phát hành dưới giấy phép **MIT License**.
+
+```
+MIT License - Bạn có quyền:
+✓ Sử dụng thương mại
+✓ Chỉnh sửa
+✓ Phân phối
+✓ Sử dụng riêng tư
+```
+
+---
+
 <div align="center">
 
 **🎌 Chúc bạn học tiếng Nhật vui vẻ! がんばって！ 🎌**
 
 Made with ❤️ by [VigStudio](https://github.com/vigstudio)
 
-[⬆ Về đầu trang](#smv-nihongo---ứng-dụng-học-tiếng-nhật-thông-minh-)
+[⬆ Về đầu trang](#-smv-nihongo---tài-liệu-hoàn-chỉnh-)
 
 </div>
